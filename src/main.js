@@ -98,20 +98,45 @@ var quotes = [
   "Each person must live their life as a model for others.",
   "A champion is defined not by their wins but by how they can recover when they fall."
 ];
-var savedPosters = [
-  makePoster(
-    "https://i.giphy.com/media/5LU6ZcEGBbhVS/giphy.gif",
-    "Optimism",
-    "Keep a joyful heart!"
-  )
-];
+// var savedPosters = [
+//   makePoster(
+//     "https://i.giphy.com/media/5LU6ZcEGBbhVS/giphy.gif",
+//     "Optimism",
+//     "Keep a joyful heart!"
+//   )
+// ];
 var currentPoster;
 
 // event listeners go here 👇
 
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
+
+// create makeRandomPoster() should access 1 random element from each of the 3 global arrays: images, titles, and quotes
+// we will do so using the invocation of getRandomIndex() per array
+// create a new instance of the Poster class using this data, via makePoster()
+// as a side effect, it will store this instance as our current poster that is being displayed
+
+function makeRandomPoster(){
+  var newURL = images[getRandomIndex(images)];
+  var newTitle = titles[getRandomIndex(titles)];
+  var newQuote = quotes[getRandomIndex(quotes)];
+  makePoster(newURL, newTitle, newQuote);
+};
+
+// makePoster() should take 3 arguments.
+// The poster class was provided in poster.js for us and we instantiate it using the arguments that get passed in.
+// The new instance also gets assigned the global variable currentPoster.
+
+function makePoster(imgURL, title, quote){
+  var newPoster = new Poster(imgURL, title, quote);
+  currentPoster = newPoster;
+  // return newPoster;
+};
+
+// getRandomIndex() takes an array as an argument and returns a random positive number representing an index it might have.
 function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
-}
+};
 
+makeRandomPoster();
