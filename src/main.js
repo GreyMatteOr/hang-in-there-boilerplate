@@ -102,16 +102,22 @@ var quotes = [
 var savedPosters = [];
 var currentPoster;
 
+var wholePoster = document.querySelector('.main-poster')
 var posterImage = document.querySelector('.poster-img');
 var posterTitle = document.querySelector('.poster-title');
 var posterQuote = document.querySelector('.poster-quote');
 var showRandomButton = document.querySelector('.show-random');
 var savePosterButton = document.querySelector('.save-poster');
-var showSavedButton = document.querySelector('.show-saved');
-var makePosterFormButton = document.querySelector('.show-form');
+var savedButton = document.querySelector('.show-saved');
+var savedGrid = document.querySelector('.saved-posters')
+var newPosterFormButton = document.querySelector('.show-form');
+var newPosterForm = document.querySelector('.poster-form')
+
 // event listeners go here 👇
 
-showRandomButton.addEventListener('click', makeRandomPoster)
+showRandomButton.addEventListener('click', makeRandomPoster);
+newPosterFormButton.addEventListener('click', toggleFormDisplay);
+savedButton.addEventListener('click', toggleSaveButton)
 
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
@@ -127,6 +133,16 @@ function makeRandomPoster(){
   var newQuote = quotes[getRandomIndex(quotes)];
   makePoster(newURL, newTitle, newQuote);
 };
+
+function toggleFormDisplay(){
+  wholePoster.classList.toggle('hidden')
+  newPosterForm.classList.toggle('hidden')
+}
+
+function toggleSaveButton(){
+  wholePoster.classList.toggle('hidden')
+  savedGrid.classList.toggle('hidden')
+}
 
 // makePoster() should take 3 arguments.
 // The poster class was provided in poster.js for us and we instantiate it using the arguments that get passed in.
