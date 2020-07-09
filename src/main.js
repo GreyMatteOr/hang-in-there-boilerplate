@@ -21,6 +21,7 @@ var images = [
   "./assets/tiger.jpg",
   "./assets/turtle.jpg"
 ];
+
 var titles = [
   "determination",
   "success",
@@ -98,15 +99,16 @@ var quotes = [
   "Each person must live their life as a model for others.",
   "A champion is defined not by their wins but by how they can recover when they fall."
 ];
-// var savedPosters = [
-//   makePoster(
-//     "https://i.giphy.com/media/5LU6ZcEGBbhVS/giphy.gif",
-//     "Optimism",
-//     "Keep a joyful heart!"
-//   )
-// ];
+var savedPosters = [];
 var currentPoster;
 
+var posterImage = document.querySelector('.poster-img');
+var posterTitle = document.querySelector('.poster-title');
+var posterQuote = document.querySelector('.poster-quote');
+var showRandomButton = document.querySelector('.show-random');
+var savePosterButton = document.querySelector('.save-poster');
+var showSavedButton = document.querySelector('.show-saved');
+var makePosterFormButton = document.querySelector('.show-form');
 // event listeners go here 👇
 
 // functions and event handlers go here 👇
@@ -131,6 +133,10 @@ function makeRandomPoster(){
 function makePoster(imgURL, title, quote){
   var newPoster = new Poster(imgURL, title, quote);
   currentPoster = newPoster;
+  posterImage.src = currentPoster.imageURL;
+  posterImage.alt = `This is a motivational picture about ${currentPoster.title}.`;
+  posterTitle.innerText = currentPoster.title;
+  posterQuote.innerText = currentPoster.quote;
   // return newPoster;
 };
 
