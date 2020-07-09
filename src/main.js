@@ -1,5 +1,18 @@
 // query selector variables go here 👇
 
+var wholePoster = document.querySelector('.main-poster');
+var posterImage = document.querySelector('.poster-img');
+var posterTitle = document.querySelector('.poster-title');
+var posterQuote = document.querySelector('.poster-quote');
+var showRandomButton = document.querySelector('.show-random');
+var savePosterButton = document.querySelector('.save-poster');
+var savedButton = document.querySelector('.show-saved');
+var savedGrid = document.querySelector('.saved-posters');
+var backFromSaved = document.querySelector('.back-to-main');
+var newPosterFormButton = document.querySelector('.show-form');
+var newPosterForm = document.querySelector('.poster-form');
+var backFromNewPoster = document.querySelector('.show-main');
+
 // we've provided you with some data to work with 👇
 var images = [
   "./assets/bees.jpg",
@@ -99,25 +112,17 @@ var quotes = [
   "Each person must live their life as a model for others.",
   "A champion is defined not by their wins but by how they can recover when they fall."
 ];
+
 var savedPosters = [];
 var currentPoster;
-
-var wholePoster = document.querySelector('.main-poster')
-var posterImage = document.querySelector('.poster-img');
-var posterTitle = document.querySelector('.poster-title');
-var posterQuote = document.querySelector('.poster-quote');
-var showRandomButton = document.querySelector('.show-random');
-var savePosterButton = document.querySelector('.save-poster');
-var savedButton = document.querySelector('.show-saved');
-var savedGrid = document.querySelector('.saved-posters')
-var newPosterFormButton = document.querySelector('.show-form');
-var newPosterForm = document.querySelector('.poster-form')
 
 // event listeners go here 👇
 
 showRandomButton.addEventListener('click', makeRandomPoster);
 newPosterFormButton.addEventListener('click', toggleFormDisplay);
-savedButton.addEventListener('click', toggleSaveButton)
+savedButton.addEventListener('click', toggleSaveButton);
+backFromNewPoster.addEventListener('click', toggleFormDisplay);
+backFromSaved.addEventListener('click', toggleSaveButton);
 
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
@@ -135,14 +140,14 @@ function makeRandomPoster(){
 };
 
 function toggleFormDisplay(){
-  wholePoster.classList.toggle('hidden')
-  newPosterForm.classList.toggle('hidden')
-}
+  wholePoster.classList.toggle('hidden');
+  newPosterForm.classList.toggle('hidden');
+};
 
 function toggleSaveButton(){
-  wholePoster.classList.toggle('hidden')
-  savedGrid.classList.toggle('hidden')
-}
+  wholePoster.classList.toggle('hidden');
+  savedGrid.classList.toggle('hidden');
+};
 
 // makePoster() should take 3 arguments.
 // The poster class was provided in poster.js for us and we instantiate it using the arguments that get passed in.
