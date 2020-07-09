@@ -111,6 +111,8 @@ var showSavedButton = document.querySelector('.show-saved');
 var makePosterFormButton = document.querySelector('.show-form');
 // event listeners go here 👇
 
+showRandomButton.addEventListener('click', makeRandomPoster)
+
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
 
