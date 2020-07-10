@@ -12,6 +12,10 @@ var backFromSaved = document.querySelector('.back-to-main');
 var newPosterFormButton = document.querySelector('.show-form');
 var newPosterForm = document.querySelector('.poster-form');
 var backFromNewPoster = document.querySelector('.show-main');
+var newPosterButton = document.querySelector('.make-poster');
+var inputQuote = document.querySelector('#poster-quote');
+var inputTitle = document.querySelector('#poster-title');
+var inputURL = document.querySelector('#poster-image-url');
 
 // we've provided you with some data to work with 👇
 var images = [
@@ -123,6 +127,7 @@ newPosterFormButton.addEventListener('click', toggleFormDisplay);
 savedButton.addEventListener('click', toggleSaveButton);
 backFromNewPoster.addEventListener('click', toggleFormDisplay);
 backFromSaved.addEventListener('click', toggleSaveButton);
+newPosterButton.addEventListener('click', makeUserPoster);
 
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
@@ -139,6 +144,27 @@ function makeRandomPoster(){
   makePoster(newURL, newTitle, newQuote);
 };
 
+function makeUserPoster(){
+  var newURL = inputURL.value;
+  var newTitle = inputTitle.value;
+  var newQuote = inputQuote.value;
+  images.push(newURL);
+  titles.push(newTitle);
+  quotes.push(newQuote);
+  makePoster(newURL, newTitle, newQuote);
+  toggleFormDisplay();
+};
+
+function makePoster(imgURL, title, quote){
+  var newPoster = new Poster(imgURL, title, quote);
+  currentPoster = newPoster;
+  posterImage.src = currentPoster.imageURL;
+  posterImage.alt = `This is a motivational picture about ${currentPoster.title}.`;
+  posterTitle.innerText = currentPoster.title;
+  posterQuote.innerText = currentPoster.quote;
+  // return newPoster;
+};
+
 function toggleFormDisplay(){
   wholePoster.classList.toggle('hidden');
   newPosterForm.classList.toggle('hidden');
@@ -152,16 +178,6 @@ function toggleSaveButton(){
 // makePoster() should take 3 arguments.
 // The poster class was provided in poster.js for us and we instantiate it using the arguments that get passed in.
 // The new instance also gets assigned the global variable currentPoster.
-
-function makePoster(imgURL, title, quote){
-  var newPoster = new Poster(imgURL, title, quote);
-  currentPoster = newPoster;
-  posterImage.src = currentPoster.imageURL;
-  posterImage.alt = `This is a motivational picture about ${currentPoster.title}.`;
-  posterTitle.innerText = currentPoster.title;
-  posterQuote.innerText = currentPoster.quote;
-  // return newPoster;
-};
 
 // getRandomIndex() takes an array as an argument and returns a random positive number representing an index it might have.
 function getRandomIndex(array) {
