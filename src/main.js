@@ -128,6 +128,8 @@ savedButton.addEventListener('click', toggleSaveButton);
 backFromNewPoster.addEventListener('click', toggleFormDisplay);
 backFromSaved.addEventListener('click', toggleSaveButton);
 newPosterButton.addEventListener('click', makeUserPoster);
+savePosterButton.addEventListener('click', storeShownPoster);
+//var savePosterButton = document.querySelector('.save-poster');
 
 // functions and event handlers go here 👇
 // (we've provided one for you to get you started)!
@@ -136,6 +138,15 @@ newPosterButton.addEventListener('click', makeUserPoster);
 // we will do so using the invocation of getRandomIndex() per array
 // create a new instance of the Poster class using this data, via makePoster()
 // as a side effect, it will store this instance as our current poster that is being displayed
+
+function storeShownPoster() {
+  if (!savedPosters.includes(currentPoster)) {
+    savedPosters.push(currentPoster);
+  }
+};
+//to refactor: try if (!savedPosters[savedPosters.length -1] === currentPoster)then push
+
+
 
 function makeRandomPoster(){
   var newURL = images[getRandomIndex(images)];
