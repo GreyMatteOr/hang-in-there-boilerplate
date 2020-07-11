@@ -144,7 +144,8 @@ function makeRandomPoster(){
   makePoster(newURL, newTitle, newQuote);
 };
 
-function makeUserPoster(){
+function makeUserPoster(event) {
+  event.preventDefault();
   var newURL = inputURL.value;
   var newTitle = inputTitle.value;
   var newQuote = inputQuote.value;
