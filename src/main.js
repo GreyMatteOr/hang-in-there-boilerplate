@@ -7,7 +7,8 @@ var posterQuote = document.querySelector('.poster-quote');
 var showRandomButton = document.querySelector('.show-random');
 var savePosterButton = document.querySelector('.save-poster');
 var savedButton = document.querySelector('.show-saved');
-var savedGrid = document.querySelector('.saved-posters');
+var savedSection = document.querySelector('.saved-posters');
+var savedGrid = document.querySelector('.saved-posters-grid')
 var backFromSaved = document.querySelector('.back-to-main');
 var newPosterFormButton = document.querySelector('.show-form');
 var newPosterForm = document.querySelector('.poster-form');
@@ -146,9 +147,7 @@ function storeShownPoster() {
 };
 //to refactor: try if (!savedPosters[savedPosters.length -1] === currentPoster)then push
 
-
-
-function makeRandomPoster(){
+function makeRandomPoster() {
   var newURL = images[getRandomIndex(images)];
   var newTitle = titles[getRandomIndex(titles)];
   var newQuote = quotes[getRandomIndex(quotes)];
@@ -167,7 +166,7 @@ function makeUserPoster(event) {
   toggleFormDisplay();
 };
 
-function makePoster(imgURL, title, quote){
+function makePoster(imgURL, title, quote) {
   var newPoster = new Poster(imgURL, title, quote);
   currentPoster = newPoster;
   posterImage.src = currentPoster.imageURL;
@@ -177,14 +176,23 @@ function makePoster(imgURL, title, quote){
   // return newPoster;
 };
 
-function toggleFormDisplay(){
+function toggleFormDisplay() {
   wholePoster.classList.toggle('hidden');
   newPosterForm.classList.toggle('hidden');
 };
 
-function toggleSaveButton(){
+function toggleSaveButton() {
   wholePoster.classList.toggle('hidden');
-  savedGrid.classList.toggle('hidden');
+  savedSection.classList.toggle('hidden');
+  for (var i = 0; i < savedPosters.length; i++) {
+    var newHTML =
+      `<article class="mini-poster">
+        <img class="poster-img" src="${savedPosters[i].imageURL}" alt="This is a motivational picture about ${savedPosters[i].title}.">
+        <h2 class="poster-title">${savedPosters[i].title}</h2>
+        <h4 class="poster-quote">${savedPosters[i].quote}</h4>
+      </article>`;
+    savedGrid.innerHTML += newHTML;
+  };
 };
 
 // makePoster() should take 3 arguments.
