@@ -6,7 +6,7 @@ var posterTitle = document.querySelector('.poster-title');
 var posterQuote = document.querySelector('.poster-quote');
 var showRandomButton = document.querySelector('.show-random');
 var savePosterButton = document.querySelector('.save-poster');
-var savedButton = document.querySelector('.show-saved');
+var displaySavedButton = document.querySelector('.show-saved');
 var savedSection = document.querySelector('.saved-posters');
 var savedGrid = document.querySelector('.saved-posters-grid')
 var backFromSaved = document.querySelector('.back-to-main');
@@ -125,9 +125,9 @@ var currentPoster;
 
 showRandomButton.addEventListener('click', makeRandomPoster);
 newPosterFormButton.addEventListener('click', toggleFormDisplay);
-savedButton.addEventListener('click', toggleSaveButton);
+displaySavedButton.addEventListener('click', toggleSaveButton);
 backFromNewPoster.addEventListener('click', toggleFormDisplay);
-backFromSaved.addEventListener('click', toggleSaveButton);
+backFromSaved.addEventListener('click', goBackFromDisplaySaved);
 newPosterButton.addEventListener('click', makeUserPoster);
 savePosterButton.addEventListener('click', storeShownPoster);
 //var savePosterButton = document.querySelector('.save-poster');
@@ -184,6 +184,7 @@ function toggleFormDisplay() {
 function toggleSaveButton() {
   wholePoster.classList.toggle('hidden');
   savedSection.classList.toggle('hidden');
+  savedGrid.innerHTML = ''
   for (var i = 0; i < savedPosters.length; i++) {
     var newHTML =
       `<article class="mini-poster">
@@ -193,6 +194,11 @@ function toggleSaveButton() {
       </article>`;
     savedGrid.innerHTML += newHTML;
   };
+};
+
+function goBackFromDisplaySaved() {
+  wholePoster.classList.toggle('hidden');
+  savedSection.classList.toggle('hidden');
 };
 
 // makePoster() should take 3 arguments.
@@ -205,3 +211,34 @@ function getRandomIndex(array) {
 };
 
 makeRandomPoster();
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* 1st savedPosters = [obj1]
+
+  *CLICK showSavedGrid
+
+  innerHTML = ''
+  runs
+  innerHTML = 'OBJ1'
+
+  returns
+  *CLICK showSavedGrid
+
+  innerHTML = 'OBJ1'
+  runs
+  innerHTML = 'OBJ1 OBj1'
+*/
