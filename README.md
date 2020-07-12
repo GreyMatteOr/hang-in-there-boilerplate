@@ -22,6 +22,8 @@ ___
 
 When the user initially opens the page, there is an auto-display of a random poster object.  A poster object includes three properties: `image`, `title`, and `quote`.  In the case of a random poster, these properties are determined at random with the help of the `makeRandomPoster()` function.  These elements are selected from arrays that store their own respective data(i.e. images, titles, and quotes).  These arrays, by default, store numerous elements to be used in the generation of the random poster.
 
+![generate random poster giphy](http://g.recordit.co/dXvOCjWyRj.gif)
+
 The `makeRandomPoster()` function calls on a helper function, `makePoster()`. This helper function ultimately creates a new instance of the `Poster` class, which is saved globally as `currentPoster`. It also is responsible for displaying the new `poster` to the primary template.
 
 In order to view another random poster, the user can click on the `Make Another Random Poster` button(declared as `showRandomButton`) to invoke the `makeRandomPoster()` function.  An event listener leads the user's action to the invocation of the function.  To capture the node associated with the corresponding HTML class, we used the `querySelector()` method on the document.
@@ -29,6 +31,8 @@ In order to view another random poster, the user can click on the `Make Another 
 ## Create User Poster
 
 If the user is on the default display page, one click on the `Make Your Own Poster` button (declared as `newPosterFormButton`) will hide the main display and instead, show the form through which the user can submit their own values for the poster's image, title, and quote.  This is accomplished by the `toggleFormDisplay()` function passed in through an event listener.  
+
+![create user poster giphy](http://g.recordit.co/j9TIWHtnXM.gif)
 
 Next, the user can insert the address of any image into the designated input box, along with one title and one quote of the user's choice.  To see the user's unique poster on the default display page, the user must click the `Show My Poster` button on the interface(declared as `newPosterButton`).  The `makeUserPoster()` function is invoked here, which is set to prevent the default `makeRandomPoster` function from running as the user intends to show the new poster.  Each of the values for the image URL, title, and quote are accessed and pushed to the respective arrays.
 
@@ -38,17 +42,20 @@ Next, the user can insert the address of any image into the designated input box
 
 The user can choose to save any combination of images, titles, and quotes that produce either a randomly generated poster or a user-designed poster.  To do this, the user can click on `Save This Poster,` which uses an event listener call on the `storeShownPoster` function.  This function uses an if statement to determine whether or not the values of the current poster already exist in the `savedPosters` array.  
 
+![save current poster giphy](http://g.recordit.co/KWSzAzAp2V.gif)
+
 As long as the poster that is currently displayed has not already been saved, the `storeShownPoster` function will push the `currentPoster` to the `savedPosters` array.  Each element inside of this array will be displayed when the user clicks the `Show Saved Posters` button.   
 
 ## View Saved Posters
 
 When the user clicks on `Show Saved Posters,` all of the posters saved in the `savedPosters` array will be shown on the screen.  This is done through an event listener calling the `toggleSaveButton` function, which hides the main display and instead, shows the users the `savedSection.`  Each time this function runs, the `savedGrid` will reset so that exactly one display of each saved poster is shown to the user.  A for loop iterates over the `savedPosters` array, which leads to the display of each of the unique saved posters from the array.  Once the user has explored all of the saved posters, the `Back to Main` button will lead them back to the main display through toggling `.hidden`.
 
+![view saved posters giphy](https://recordit.co/WlXeM07aOj.gif)
 
 ## Delete Saved Poster - ML
 
 
-
+![delete saved poster giphy](http://g.recordit.co/1CCWjxRhdn.gif)
 
 
 
