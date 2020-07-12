@@ -17,6 +17,8 @@ var newPosterButton = document.querySelector('.make-poster');
 var inputQuote = document.querySelector('#poster-quote');
 var inputTitle = document.querySelector('#poster-title');
 var inputURL = document.querySelector('#poster-image-url');
+var lastClicked;
+var hasBeenClickedBefore;
 
 // we've provided you with some data to work with 👇
 var images = [
@@ -130,6 +132,7 @@ backFromNewPoster.addEventListener('click', toggleFormDisplay);
 backFromSaved.addEventListener('click', goBackFromDisplaySaved);
 newPosterButton.addEventListener('click', makeUserPoster);
 savePosterButton.addEventListener('click', storeShownPoster);
+savedGrid.addEventListener('click', clickTwiceThenDelete);
 //var savePosterButton = document.querySelector('.save-poster');
 
 // functions and event handlers go here 👇
@@ -139,6 +142,27 @@ savePosterButton.addEventListener('click', storeShownPoster);
 // we will do so using the invocation of getRandomIndex() per array
 // create a new instance of the Poster class using this data, via makePoster()
 // as a side effect, it will store this instance as our current poster that is being displayed
+
+function clickTwiceThenDelete(event) {
+  var id = event.target.id.split('-');
+  var index = id[1];
+  if (lastClicked === index) {
+    savedPosters.splice(index, 1);
+    savedGrid.innerHTML = '';
+    for (var i = 0; i < savedPosters.length; i++) {
+      var newHTML =
+        `<article class="mini-poster" id="mini-${i}">
+          <img class="poster-img" id="miniIMG-${i}" src="${savedPosters[i].imageURL}" alt="This is a motivational picture about ${savedPosters[i].title}.">
+          <h2 class="poster-title" id="miniTTL-${i}">${savedPosters[i].title}</h2>
+          <h4 class="poster-quote" id="miniQTE-${i}">${savedPosters[i].quote}</h4>
+        </article>`;
+      savedGrid.innerHTML += newHTML;
+      lastClicked = false;
+    }
+  } else {
+    lastClicked = index;
+  }
+};
 
 function storeShownPoster() {
   if (!savedPosters.includes(currentPoster)) {
@@ -184,13 +208,13 @@ function toggleFormDisplay() {
 function toggleSaveButton() {
   wholePoster.classList.toggle('hidden');
   savedSection.classList.toggle('hidden');
-  savedGrid.innerHTML = ''
+  savedGrid.innerHTML = '';
   for (var i = 0; i < savedPosters.length; i++) {
     var newHTML =
-      `<article class="mini-poster">
-        <img class="poster-img" src="${savedPosters[i].imageURL}" alt="This is a motivational picture about ${savedPosters[i].title}.">
-        <h2 class="poster-title">${savedPosters[i].title}</h2>
-        <h4 class="poster-quote">${savedPosters[i].quote}</h4>
+      `<article class="mini-poster" id="mini-${i}">
+        <img class="poster-img" id="miniIMG-${i}" src="${savedPosters[i].imageURL}" alt="This is a motivational picture about ${savedPosters[i].title}.">
+        <h2 class="poster-title" id="miniTTL-${i}">${savedPosters[i].title}</h2>
+        <h4 class="poster-quote" id="miniQTE-${i}">${savedPosters[i].quote}</h4>
       </article>`;
     savedGrid.innerHTML += newHTML;
   };
@@ -211,34 +235,3 @@ function getRandomIndex(array) {
 };
 
 makeRandomPoster();
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* 1st savedPosters = [obj1]
-
-  *CLICK showSavedGrid
-
-  innerHTML = ''
-  runs
-  innerHTML = 'OBJ1'
-
-  returns
-  *CLICK showSavedGrid
-
-  innerHTML = 'OBJ1'
-  runs
-  innerHTML = 'OBJ1 OBj1'
-*/
