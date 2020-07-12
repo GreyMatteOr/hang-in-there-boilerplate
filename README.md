@@ -1,6 +1,99 @@
+---
+# Exploring the DOM with Motivational Posters
+> A [Front-End Project](https://nicolegooden.github.io/hang-in-there-boilerplate/) by [Nicole Gooden](https://github.com/nicolegooden) and [Matthew Lane](https://github.com/GreyMatteOr)
+
+___
+
+## Introduction
+We are Module One students at Turing School of Software and Design, and this is our first partner project.  We have used three core front-end languages -- HTML, CSS, and JavaScript -- to build a website.
+Its title is *Hang in There* and it lets users create different motivational posters.  Each poster consists of an image (stored as a URL), title, and quote, which are then  displayed on a template poster.  Upon first load, the initial state of the website is a randomized poster.
+
+#### Features to note:
++ [Generate random posters from pre-defined data](#generate-random-poster)
++ [Create a poster from user input](#create-user-poster)
++ [Save the poster that is currently displayed](#save-current-poster)
++ [View the collection of saved posters](#view-saved-posters)
++ [Delete saved poster with consecutive double-click](#delete-saved-poster)
+
+Our website allows the user to choose between designing their own poster and enjoying randomly-generated posters provided by the developers.
+___
+
+## Generate Random Poster
+
+When the user initially opens the page, there is an auto-display of a random poster object.  A poster object includes three properties: `image`, `title`, and `quote`.  In the case of a random poster, these properties are determined at random with the help of the `makeRandomPoster()` function.  These elements are selected from arrays that store their own respective data(i.e. images, titles, and quotes).  These arrays, by default, store numerous elements to be used in the generation of the random poster.
+
+The `makeRandomPoster()` function calls on a helper function, `makePoster()`. This helper function is what is ultimately creating a new instance of the `Poster` class, which is saved globally as `currentPoster`. It also is responsible for displaying the new `poster` to the primary template.
+
+In order to view another random poster, the user can click on the `showRandomButton` to invoke the `makeRandomPoster()` function.  An event listener leads the user's action to the invocation of the function.  To capture the node associated with the corresponding HTML class, we used the `querySelector()` method on the document.
+
+## Create User Poster - NG
+
+## Save Current Poster - NG
+
+## View Saved Posters - NG
+
+## Delete Saved Poster - ML
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 # Hang In There
 
-A boilerplate repo. 
+A boilerplate repo.
 
 ## Set Up
 
