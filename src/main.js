@@ -129,7 +129,7 @@ savedGrid.addEventListener('click', clickTwiceThenDelete);
 savePosterButton.addEventListener('click', storeShownPoster);
 showRandomButton.addEventListener('click', makeRandomPoster);
 
-function clickTwiceThenDelete(event) {
+;function clickTwiceThenDelete(event) {
   var id = event.target.id.split('-');
   var index = id[1];
   if (lastClicked === index) {
@@ -150,37 +150,36 @@ function clickTwiceThenDelete(event) {
   }
 };
 
-function getRandomIndex(array) {
+;function getRandomIndex(array) {
   return Math.floor(Math.random() * array.length);
 };
 
-function goBackFromDisplaySaved() {
+;function goBackFromDisplaySaved() {
   wholePoster.classList.toggle('hidden');
   savedSection.classList.toggle('hidden');
 };
 
-function makePoster(imgURL, title, quote) {
+;function makePoster(imgURL, title, quote) {
   var newPoster = new Poster(imgURL, title, quote);
   currentPoster = newPoster;
   posterImage.src = currentPoster.imageURL;
   posterImage.alt = `This is a motivational picture about ${currentPoster.title}.`;
   posterTitle.innerText = currentPoster.title;
   posterQuote.innerText = currentPoster.quote;
-  // return newPoster;
 };
 
-function makeRandomPoster() {
+;function makeRandomPoster() {
   var newURL = images[getRandomIndex(images)];
   var newTitle = titles[getRandomIndex(titles)];
   var newQuote = quotes[getRandomIndex(quotes)];
   makePoster(newURL, newTitle, newQuote);
 };
 
-function makeUserPoster(event) {
-  event.preventDefault();
+;function makeUserPoster(event) {
   var newURL = inputURL.value;
   var newTitle = inputTitle.value;
   var newQuote = inputQuote.value;
+  event.preventDefault();
   images.push(newURL);
   titles.push(newTitle);
   quotes.push(newQuote);
@@ -188,18 +187,18 @@ function makeUserPoster(event) {
   toggleFormDisplay();
 };
 
-function storeShownPoster() {
+;function storeShownPoster() {
   if (!savedPosters.includes(currentPoster)) {
     savedPosters.push(currentPoster);
   }
 };
 
-function toggleFormDisplay() {
+;function toggleFormDisplay() {
   wholePoster.classList.toggle('hidden');
   newPosterForm.classList.toggle('hidden');
 };
 
-function toggleSaveButton() {
+;function toggleSaveButton() {
   wholePoster.classList.toggle('hidden');
   savedSection.classList.toggle('hidden');
   savedGrid.innerHTML = '';
