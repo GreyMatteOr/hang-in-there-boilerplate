@@ -1,26 +1,21 @@
-// query selector variables go here 👇
-
-var wholePoster = document.querySelector('.main-poster');
-var posterImage = document.querySelector('.poster-img');
-var posterTitle = document.querySelector('.poster-title');
-var posterQuote = document.querySelector('.poster-quote');
-var showRandomButton = document.querySelector('.show-random');
-var savePosterButton = document.querySelector('.save-poster');
-var displaySavedButton = document.querySelector('.show-saved');
-var savedSection = document.querySelector('.saved-posters');
-var savedGrid = document.querySelector('.saved-posters-grid')
-var backFromSaved = document.querySelector('.back-to-main');
-var newPosterFormButton = document.querySelector('.show-form');
-var newPosterForm = document.querySelector('.poster-form');
 var backFromNewPoster = document.querySelector('.show-main');
-var newPosterButton = document.querySelector('.make-poster');
+var backFromSaved = document.querySelector('.back-to-main');
+var displaySavedButton = document.querySelector('.show-saved');
 var inputQuote = document.querySelector('#poster-quote');
 var inputTitle = document.querySelector('#poster-title');
 var inputURL = document.querySelector('#poster-image-url');
-var lastClicked;
-var hasBeenClickedBefore;
+var newPosterForm = document.querySelector('.poster-form');
+var newPosterFormButton = document.querySelector('.show-form');
+var newPosterButton = document.querySelector('.make-poster');
+var posterImage = document.querySelector('.poster-img');
+var posterQuote = document.querySelector('.poster-quote');
+var posterTitle = document.querySelector('.poster-title');
+var savedGrid = document.querySelector('.saved-posters-grid')
+var savePosterButton = document.querySelector('.save-poster');
+var savedSection = document.querySelector('.saved-posters');
+var showRandomButton = document.querySelector('.show-random');
+var wholePoster = document.querySelector('.main-poster');
 
-// we've provided you with some data to work with 👇
 var images = [
   "./assets/bees.jpg",
   "./assets/bridge.jpg",
@@ -42,43 +37,6 @@ var images = [
   "./assets/turtle.jpg"
 ];
 
-var titles = [
-  "determination",
-  "success",
-  "inspiration",
-  "perspiration",
-  "grit",
-  "empathy",
-  "feelings",
-  "hope",
-  "believe",
-  "try",
-  "conviction",
-  "accomplishment",
-  "achievement",
-  "ambition",
-  "clarity",
-  "challenge",
-  "commitment",
-  "confidence",
-  "action",
-  "courage",
-  "focus",
-  "breathe",
-  "gratitude",
-  "imagination",
-  "kindness",
-  "mindfulness",
-  "knowledge",
-  "opportunity",
-  "passion",
-  "patience",
-  "practice",
-  "smile",
-  "trust",
-  "understanding",
-  "wisdom"
-];
 var quotes = [
   "Don’t downgrade your dream just to fit your reality, upgrade your conviction to match your destiny.",
   "You are braver than you believe, stronger than you seem and smarter than you think.",
@@ -120,28 +78,56 @@ var quotes = [
   "A champion is defined not by their wins but by how they can recover when they fall."
 ];
 
+var titles = [
+  "determination",
+  "success",
+  "inspiration",
+  "perspiration",
+  "grit",
+  "empathy",
+  "feelings",
+  "hope",
+  "believe",
+  "try",
+  "conviction",
+  "accomplishment",
+  "achievement",
+  "ambition",
+  "clarity",
+  "challenge",
+  "commitment",
+  "confidence",
+  "action",
+  "courage",
+  "focus",
+  "breathe",
+  "gratitude",
+  "imagination",
+  "kindness",
+  "mindfulness",
+  "knowledge",
+  "opportunity",
+  "passion",
+  "patience",
+  "practice",
+  "smile",
+  "trust",
+  "understanding",
+  "wisdom"
+];
+
 var savedPosters = [];
 var currentPoster;
+var lastClicked;
 
-// event listeners go here 👇
-
-showRandomButton.addEventListener('click', makeRandomPoster);
-newPosterFormButton.addEventListener('click', toggleFormDisplay);
-displaySavedButton.addEventListener('click', toggleSaveButton);
 backFromNewPoster.addEventListener('click', toggleFormDisplay);
 backFromSaved.addEventListener('click', goBackFromDisplaySaved);
+displaySavedButton.addEventListener('click', toggleSaveButton);
+newPosterFormButton.addEventListener('click', toggleFormDisplay);
 newPosterButton.addEventListener('click', makeUserPoster);
-savePosterButton.addEventListener('click', storeShownPoster);
 savedGrid.addEventListener('click', clickTwiceThenDelete);
-//var savePosterButton = document.querySelector('.save-poster');
-
-// functions and event handlers go here 👇
-// (we've provided one for you to get you started)!
-
-// create makeRandomPoster() should access 1 random element from each of the 3 global arrays: images, titles, and quotes
-// we will do so using the invocation of getRandomIndex() per array
-// create a new instance of the Poster class using this data, via makePoster()
-// as a side effect, it will store this instance as our current poster that is being displayed
+savePosterButton.addEventListener('click', storeShownPoster);
+showRandomButton.addEventListener('click', makeRandomPoster);
 
 function clickTwiceThenDelete(event) {
   var id = event.target.id.split('-');
@@ -164,12 +150,24 @@ function clickTwiceThenDelete(event) {
   }
 };
 
-function storeShownPoster() {
-  if (!savedPosters.includes(currentPoster)) {
-    savedPosters.push(currentPoster);
-  }
+function getRandomIndex(array) {
+  return Math.floor(Math.random() * array.length);
 };
-//to refactor: try if (!savedPosters[savedPosters.length -1] === currentPoster)then push
+
+function goBackFromDisplaySaved() {
+  wholePoster.classList.toggle('hidden');
+  savedSection.classList.toggle('hidden');
+};
+
+function makePoster(imgURL, title, quote) {
+  var newPoster = new Poster(imgURL, title, quote);
+  currentPoster = newPoster;
+  posterImage.src = currentPoster.imageURL;
+  posterImage.alt = `This is a motivational picture about ${currentPoster.title}.`;
+  posterTitle.innerText = currentPoster.title;
+  posterQuote.innerText = currentPoster.quote;
+  // return newPoster;
+};
 
 function makeRandomPoster() {
   var newURL = images[getRandomIndex(images)];
@@ -190,14 +188,10 @@ function makeUserPoster(event) {
   toggleFormDisplay();
 };
 
-function makePoster(imgURL, title, quote) {
-  var newPoster = new Poster(imgURL, title, quote);
-  currentPoster = newPoster;
-  posterImage.src = currentPoster.imageURL;
-  posterImage.alt = `This is a motivational picture about ${currentPoster.title}.`;
-  posterTitle.innerText = currentPoster.title;
-  posterQuote.innerText = currentPoster.quote;
-  // return newPoster;
+function storeShownPoster() {
+  if (!savedPosters.includes(currentPoster)) {
+    savedPosters.push(currentPoster);
+  }
 };
 
 function toggleFormDisplay() {
@@ -218,20 +212,6 @@ function toggleSaveButton() {
       </article>`;
     savedGrid.innerHTML += newHTML;
   };
-};
-
-function goBackFromDisplaySaved() {
-  wholePoster.classList.toggle('hidden');
-  savedSection.classList.toggle('hidden');
-};
-
-// makePoster() should take 3 arguments.
-// The poster class was provided in poster.js for us and we instantiate it using the arguments that get passed in.
-// The new instance also gets assigned the global variable currentPoster.
-
-// getRandomIndex() takes an array as an argument and returns a random positive number representing an index it might have.
-function getRandomIndex(array) {
-  return Math.floor(Math.random() * array.length);
 };
 
 makeRandomPoster();
