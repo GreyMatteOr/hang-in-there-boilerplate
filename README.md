@@ -1,4 +1,4 @@
-[Back to Core Concepts](#core-concepts)# Exploring the DOM with Motivational Posters
+# Exploring the DOM with Motivational Posters
 > A [Front-End Project](https://nicolegooden.github.io/hang-in-there-boilerplate/) by [Nicole Gooden](https://github.com/nicolegooden) and [Matthew Lane](https://github.com/GreyMatteOr)
 ---
 ## Contents
