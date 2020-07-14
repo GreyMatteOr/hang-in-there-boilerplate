@@ -1,22 +1,26 @@
----
 # Exploring the DOM with Motivational Posters
 > A [Front-End Project](https://nicolegooden.github.io/hang-in-there-boilerplate/) by [Nicole Gooden](https://github.com/nicolegooden) and [Matthew Lane](https://github.com/GreyMatteOr)
-
-___
+---
+## Contents
+1. [Features](#features)
+2. [Core Concepts](#core-concepts)
+3. [Challenges](#challenges)
+---
 
 ## Introduction
-We are Module One students at Turing School of Software and Design, and this is our first partner project.  We have used three core front-end languages -- HTML, CSS, and JavaScript -- to build a website.
-Its title is *Hang in There* and it lets users create different motivational posters.  Each poster consists of an image (stored as a URL), title, and quote, which are then  displayed on a template poster.  Upon first load, the initial state of the website is a randomized poster.
+We are Module One students at Turing School of Software and Design, and this is our first partner project. We have used three core front-end languages -- HTML, CSS, and JavaScript -- to build a website.
+Its title is *Hang in There* and it lets users create and display different motivational posters. Each poster consists of an image (stored as a URL), title, and quote, which are then displayed on a template poster. The website then helps the user to save, curate and display their collection of posters.
+___
 
-#### Features to note:
+## Features
 + [Generate random posters from pre-defined data](#generate-random-poster)
 + [Create a poster from user input](#create-user-poster)
 + [Save the poster that is currently displayed](#save-current-poster)
 + [View the collection of saved posters](#view-saved-posters)
 + [Delete saved poster with consecutive double-click](#delete-saved-poster)
 
-Our website allows the user to choose between designing their own poster and enjoying randomly-generated posters provided by the developers.
-___
+> [Back to the top](#exploring-the-dom-with-motivational-posters)
+---
 
 ## Generate Random Poster
 
@@ -28,6 +32,8 @@ The `makeRandomPoster()` function calls on a helper function, `makePoster()`. Th
 
 In order to view another random poster, the user can click on the `Show Another Random Poster` button(declared as `buttonShowRandom`) to invoke the `makeRandomPoster()` function.  An event listener leads the user's action to the invocation of the function.  To capture the node associated with the corresponding HTML class, we used the `querySelector()` method on the document.
 
+[Back to Features](#features)
+
 ## Create User Poster
 
 If the user is on the default display page, one click on the `Make Your Own Poster` button (declared as `buttonMakeYourOwnPoster`) will hide the main display and instead, show the form through which the user can submit their own values for the poster's image, title, and quote.  This is accomplished by the `toggleFormDisplay()` function passed in through an event listener.  
@@ -38,6 +44,8 @@ Next, the user can insert the address of any image into the designated input box
 
 `makePoster()` and `toggleFormDisplay()` are invoked at the end of the `makeUserPoster` functionality, which creates a new instance of the `Poster` class, assigns those user values (image URL, title, and quote) to be displayed as `currentPoster` on the display page.  The `toggleFormDisplay` function allows the user to view the display page once again.  Now, the user has toggled the view and designed a new poster that can be configured and seen where there was initially a random poster.   
 
+[Back to Features](#features)
+
 ## Save Current Poster
 
 The user can choose to save any combination of images, titles, and quotes that produce either a randomly generated poster or a user-designed poster.  To do this, the user can click on the `Save This Poster` button, which uses an event listener to call on the `storeShownPoster` function.  This function uses an if statement to determine whether or not the values of the current poster already exist in the `savedPosters` array.  
@@ -46,11 +54,15 @@ The user can choose to save any combination of images, titles, and quotes that p
 
 As long as the poster that is currently displayed has not already been saved, the `storeShownPoster` function will push the `currentPoster` to the `savedPosters` array.  Each element inside of this array will be displayed when the user clicks the `Show Saved Posters` button.   
 
+[Back to Features](#features)
+
 ## View Saved Posters
 
 When the user clicks on `Show Saved Posters`, all of the posters saved in the `savedPosters` array will be shown on the screen.  This is done through an event listener calling the `toggleSaveButton` function, which hides the main display and instead, shows the users the `sectionSavedPosters`.  Each time this function runs, the `articleSavedGrid` will reset so that exactly one display of each saved poster is shown to the user.  A for loop iterates over the `savedPosters` array, which leads to the display of each of the unique saved posters from the array.  Once the user has explored all of the saved posters, the `Back to Main` button will lead them back to the main display through toggling `.hidden`.
 
 ![view saved posters giphy](https://recordit.co/WlXeM07aOj.gif)
+
+[Back to Features](#features)
 
 ## Delete Saved Poster
 
@@ -65,10 +77,84 @@ It achieves this through an event listener that responds any time the user click
 
  Using this functionality, a user may now curate a beautiful collection of truly inspiring posters!
 
- ## Core Concepts - ML
+ [Back to Features](#features)
 
+---
+ ## Core Concepts
 
- ## Challenges
+ 1. [HTML](#html)
+ 2. [CSS](#css)
+ 3. [Interacting with DOM](#interacting-with-dom)
+ 4. [Capturing Nodes using querySelector](#capturing-nodes-using-the-querySelector)
+ 5. [Tying it all together with Events and Event Listeners](#tying-it-all-together-with-events-and-event-listeners)
+
+> [Back to the top](#exploring-the-dom-with-motivational-posters)
+ ---
+
+#### HTML
+
+  **HTML**, which stands for *Hyper Text Markup Language*, is the protocol that is the backbone of all web site and design.
+
+  The language has a set of predefined *elements* with specific behavior associated with them. Elements can range from giant titles, to paragraphs, to buttons and inputs along with [many others](https://developer.mozilla.org/en-US/docs/Web/HTML/Element). These elements are typically designated with a set of so-called *tags*, made up of an opening tag and typically a closing tag.  
+
+  An opening tag takes the form of a identifier (like 'p', 'h1', or 'div') placed inside a pair of angle-brackets ('<' and '>'). The corresponding closing tag will be the exact same but with a forward slash ('/').  
+  <br>**Example**: `<p>`, `<h1>`, and `<div>` are all opening tags with `</p>`, `</h1>`, and `</div>` as their corresponding closing tags.
+
+  These elements can be created and filled with content, which can include text, links to other pages or images, or even other elements. Each element also has a number of [specific attributes](https://developer.mozilla.org/en-US/docs/Web/HTML/Attributes) that control how the elements are displayed as well as certain behavior.
+
+  After an HTML document is complete, an internet browser knows how to display using conventions implemented inside the HTML.
+
+  [Back to Core Concepts](#core-concepts)
+
+#### CSS
+
+  **CSS**, which stands for Cascading Style Sheets, is a complementary language to HTML that builds from the webpage structure in the HTML file. It attaches on to different elements or groups of elements and modifies their attributes.
+
+  While it is possible to create styling in-line inside the HTML document, it is preferred (and generally easier) to create a separate CSS file and link to it inside the HTML.
+
+  [Back to Core Concepts](#core-concepts)
+
+#### Interacting with DOM
+
+   Understanding the **Document Object Model** is fundamental to building a creating interactive websites. It is what is ultimately responsible for converting HTML into a web page as well as displaying it in the browser window.
+
+   *HTML* is a mostly static language - that is, once the webpage is loaded, the HTML is more or less unable to be changed. But creating dynamic functionality and interactive UI requires some modularity to be possible. This is where the DOM becomes indispensable. The *DOM* is the interface that allows JavaScript to interact with what is being displayed without needing to modify the actual HTML code that built the website.
+
+   The **Document Object** is organized in a *tree* hierarchy. When a website first loads, the HTML file is read from top to bottom, and each element is converted into a **DOM node**. If a DOM Node contains another element, then a new DOM node is created inside it (called a *child* of the *parent* node). This continues until the entire HTML is converted in this way. Afterwards, access to the *Document Object* is stored in Javascript as a global variable **document**.
+
+[Back to Core Concepts](#core-concepts)
+
+#### Capturing Nodes using the querySelector
+
+  In order to interact with the DOM, it is crucial to understand how to isolate and modify with specific parts of it. On the HTML side, it is usually helpful to identify which elements we will be using and giving them an identifying `class`, or in the case of a single element, giving it a unique `id`.
+
+  Then on the Javascript side, we can locate the DOM node(s) that corresponds to the desired HTML using the `document` method called `querySelector`. We can use this to find the first element that matches a search string that is passed as an argument. For instance, we can use the search string `'p'` to isolate the first `<p>` element in the current Document Object. If we wanted to search for a `class`, we would add a preceding `'.'` character, and similarly a `'#'` character for an `id`.
+
+  This then returns to us a *DOM node* which gives us access to that specific element on the web page.
+
+  [Back to Core Concepts](#core-concepts)
+
+#### Tying it all together with Events and Event Listeners
+
+  In JavaScript, *Events* are a large collection of recognized triggers. These triggers might include:
+  - the user clicking the mouse
+  - the site loading
+  - the cursor hovering over an HTML element
+  - an input field being modified
+  - [many, many more](https://developer.mozilla.org/en-US/docs/Web/Events)
+
+Events are useful for creating website functionality that is performed **in response** to something happening on the page, especially user actions.
+
+In order to actually implement responsive functionality, we need some way to recognize when that event occurs, and this is where *event listeners* come to the fore. Event Listeners attach themselves to a *DOM node* and have an event they are listening for and then a function that they will execute when that event occurs.
+
+It is important to note, that listeners pass an **Event Object** into to whatever function they call as an argument. Event Objects store all of the information about the state of page when the event occurred (like the DOM node that triggered the event) as well as some methods to modify how the event proceeds (like `.preventDefault()`, which prevents the default behavior of certain HTML elements).
+
+[Back to Core Concepts](#core-concepts)
+
+---
+ ## Challenges  
+> [Back to the top](#exploring-the-dom-with-motivational-posters)
+---
 
 While we have had numerous opportunities to develop our skills and deepen our understanding of the core concepts, we have tackled some challenges along the way.
 
@@ -85,4 +171,6 @@ While we have had numerous opportunities to develop our skills and deepen our un
     + We revisited our `makeUserPoster` function and realized we needed to use the `.preventDefault()` method to avoid showing the user another random poster.  This method acts on the event, then the user's image URL, title, and quote get pushed to the arrays that contain the collection of similar elements for poster generation.  Finally, the `makePoster` function is invoked with the user's input values, and the user's poster is displayed on the main view.  The `.preventDefault()` method allows the rest of our functionality to do its job, uninterrupted.
 
 1. The `hidden` CSS class:
-    + While examining our HTML file, we noticed `.hidden` identified as a class for all of the other sections the user could view and interact with.  Within this class, the `display` property was set to a value of `none`, which meant that unless we hid the default page, the user would never be able to access the `Make Your Own Poster` form or the `Show Saved Posters` grid view.  After doing some research on `toggle`, we decided to create a few functions that toggled `.hidden` from the class list of the target node.  When these functions are called, the two sections in question are toggled, so that while one is hidden, the other is viewable.  This feature allows the user to switch views upon button click. 
+    + While examining our HTML file, we noticed `.hidden` identified as a class for all of the other sections the user could view and interact with.  Within this class, the `display` property was set to a value of `none`, which meant that unless we hid the default page, the user would never be able to access the `Make Your Own Poster` form or the `Show Saved Posters` grid view.  After doing some research on `toggle`, we decided to create a few functions that toggled `.hidden` from the class list of the target node.  When these functions are called, the two sections in question are toggled, so that while one is hidden, the other is viewable.  This feature allows the user to switch views upon button click.
+
+[Back to the top](#exploring-the-dom-with-motivational-posters)
