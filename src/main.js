@@ -1,20 +1,20 @@
-var backFromNewPoster = document.querySelector('.show-main');
-var backFromSaved = document.querySelector('.back-to-main');
-var displaySavedButton = document.querySelector('.show-saved');
+var articleSavedGrid = document.querySelector('.saved-posters-grid');
+var buttonBackFromSaved = document.querySelector('.back-to-main');
+var buttonBackFromUserPoster = document.querySelector('.show-main');
+var buttonMakeYourOwnPoster = document.querySelector('.show-form');
+var buttonSavePoster = document.querySelector('.save-poster');
+var buttonShowMyPoster = document.querySelector('.make-poster');
+var buttonShowRandom = document.querySelector('.show-random');
+var buttonShowSaved = document.querySelector('.show-saved');
 var inputQuote = document.querySelector('#poster-quote');
 var inputTitle = document.querySelector('#poster-title');
 var inputURL = document.querySelector('#poster-image-url');
-var newPosterForm = document.querySelector('.poster-form');
-var newPosterFormButton = document.querySelector('.show-form');
-var newPosterButton = document.querySelector('.make-poster');
 var posterImage = document.querySelector('.poster-img');
 var posterQuote = document.querySelector('.poster-quote');
 var posterTitle = document.querySelector('.poster-title');
-var savedGrid = document.querySelector('.saved-posters-grid')
-var savePosterButton = document.querySelector('.save-poster');
-var savedSection = document.querySelector('.saved-posters');
-var showRandomButton = document.querySelector('.show-random');
-var wholePoster = document.querySelector('.main-poster');
+var sectionMainPoster = document.querySelector('.main-poster');
+var sectionPosterForm = document.querySelector('.poster-form');
+var sectionSavedPosters = document.querySelector('.saved-posters');
 
 var images = [
   './assets/bees.jpg',
@@ -120,33 +120,37 @@ var savedPosters = [];
 var currentPoster;
 var lastClicked;
 
-backFromNewPoster.addEventListener('click', toggleFormDisplay);
-backFromSaved.addEventListener('click', goBackFromDisplaySaved);
-displaySavedButton.addEventListener('click', toggleSaveButton);
-newPosterFormButton.addEventListener('click', toggleFormDisplay);
-newPosterButton.addEventListener('click', makeUserPoster);
-savedGrid.addEventListener('click', clickTwiceThenDelete);
-savePosterButton.addEventListener('click', storeShownPoster);
-showRandomButton.addEventListener('click', makeRandomPoster);
+buttonBackFromUserPoster.addEventListener('click', toggleFormDisplay);
+buttonBackFromSaved.addEventListener('click', goBackFromDisplaySaved);
+buttonShowSaved.addEventListener('click', toggleSaveButton);
+buttonMakeYourOwnPoster.addEventListener('click', toggleFormDisplay);
+buttonShowMyPoster.addEventListener('click', makeUserPoster);
+articleSavedGrid.addEventListener('click', clickTwiceThenDelete);
+buttonSavePoster.addEventListener('click', storeShownPoster);
+buttonShowRandom.addEventListener('click', makeRandomPoster);
 
 ;function clickTwiceThenDelete(event) {
   var id = event.target.id.split('-');
-  var index = id[1];
-  if (lastClicked === index) {
-    savedPosters.splice(index, 1);
-    savedGrid.innerHTML = '';
-    for (var i = 0; i < savedPosters.length; i++) {
-      var newHTML =
-        `<article class='mini-poster' id='mini-${i}'>
-          <img class='poster-img' id='miniIMG-${i}' src='${savedPosters[i].imageURL}' alt='This is a motivational picture about ${savedPosters[i].title}.'>
-          <h2 class='poster-title' id='miniTTL-${i}'>${savedPosters[i].title}</h2>
-          <h4 class='poster-quote' id='miniQTE-${i}'>${savedPosters[i].quote}</h4>
-        </article>`;
-      savedGrid.innerHTML += newHTML;
-      lastClicked = false;
-    }
+  if (lastClicked === id[1]) {
+    savedPosters.splice(id[1], 1);
+    var deleteMe = document.querySelector(`#mini-${id[1]}`);
+    articleSavedGrid.removeChild(deleteMe);
+    lastClicked = false;
   } else {
-    lastClicked = index;
+    lastClicked = id[1];
+  }
+};
+
+;function displaySavedGrid() {
+  articleSavedGrid.innerHTML = '';
+  for (var i = 0; i < savedPosters.length; i++) {
+    var newHTML =
+      `<article class='mini-poster' id='mini-${i}'>
+        <img class='poster-img' id='miniIMG-${i}' src='${savedPosters[i].imageURL}' alt='This is a motivational picture about ${savedPosters[i].title}.'>
+        <h2 class='poster-title' id='miniTTL-${i}'>${savedPosters[i].title}</h2>
+        <h4 class='poster-quote' id='miniQTE-${i}'>${savedPosters[i].quote}</h4>
+      </article>`;
+    articleSavedGrid.innerHTML += newHTML;
   }
 };
 
@@ -155,8 +159,8 @@ showRandomButton.addEventListener('click', makeRandomPoster);
 };
 
 ;function goBackFromDisplaySaved() {
-  wholePoster.classList.toggle('hidden');
-  savedSection.classList.toggle('hidden');
+  sectionMainPoster.classList.toggle('hidden');
+  sectionSavedPosters.classList.toggle('hidden');
 };
 
 ;function makePoster(imgURL, title, quote) {
@@ -188,29 +192,20 @@ showRandomButton.addEventListener('click', makeRandomPoster);
 };
 
 ;function storeShownPoster() {
-  if (!savedPosters.includes(currentPoster)) {
+  if (currentPoster !== savedPosters[savedPosters.length - 1]) {
     savedPosters.push(currentPoster);
   }
 };
 
 ;function toggleFormDisplay() {
-  wholePoster.classList.toggle('hidden');
-  newPosterForm.classList.toggle('hidden');
+  sectionMainPoster.classList.toggle('hidden');
+  sectionPosterForm.classList.toggle('hidden');
 };
 
 ;function toggleSaveButton() {
-  wholePoster.classList.toggle('hidden');
-  savedSection.classList.toggle('hidden');
-  savedGrid.innerHTML = '';
-  for (var i = 0; i < savedPosters.length; i++) {
-    var newHTML =
-      `<article class='mini-poster' id='mini-${i}'>
-        <img class='poster-img' id='miniIMG-${i}' src='${savedPosters[i].imageURL}' alt='This is a motivational picture about ${savedPosters[i].title}.'>
-        <h2 class='poster-title' id='miniTTL-${i}'>${savedPosters[i].title}</h2>
-        <h4 class='poster-quote' id='miniQTE-${i}'>${savedPosters[i].quote}</h4>
-      </article>`;
-    savedGrid.innerHTML += newHTML;
-  };
+  sectionMainPoster.classList.toggle('hidden');
+  sectionSavedPosters.classList.toggle('hidden');
+  displaySavedGrid();
 };
 
 makeRandomPoster();
