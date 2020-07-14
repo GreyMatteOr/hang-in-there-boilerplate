@@ -19,7 +19,7 @@ ___
 + [View the collection of saved posters](#view-saved-posters)
 + [Delete saved poster with consecutive double-click](#delete-saved-poster)
 
- [Back to the top](#exploring-the-dom-with-motivational-posters)
+> [Back to the top](#exploring-the-dom-with-motivational-posters)
 ---
 
 ## Generate Random Poster
@@ -88,7 +88,7 @@ It achieves this through an event listener that responds any time the user click
  4. [Capturing Nodes using querySelector](#capturing-nodes-using-the-querySelector)
  5. [Tying it all together with Events and Event Listeners](#tying-it-all-together-with-events-and-event-listeners)
 
- [Back to the top](#exploring-the-dom-with-motivational-posters)
+> [Back to the top](#exploring-the-dom-with-motivational-posters)
  ---
 
 #### HTML
@@ -152,7 +152,8 @@ It is important to note, that listeners pass an **Event Object** into to whateve
 [Back to Core Concepts](#core-concepts)
 
 ---
- ## Challenges
+ ## Challenges  
+> [Back to the top](#exploring-the-dom-with-motivational-posters)
 ---
 
 While we have had numerous opportunities to develop our skills and deepen our understanding of the core concepts, we have tackled some challenges along the way.
