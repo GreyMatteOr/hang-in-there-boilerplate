@@ -68,4 +68,21 @@ It achieves this through an event listener that responds any time the user click
  ## Core Concepts - ML
 
 
- ## Challenges - NG
+ ## Challenges
+
+While we have had numerous opportunities to develop our skills and deepen our understanding of the core concepts, we have tackled some challenges along the way.
+
+1. The `clickTwiceThenDelete` function:
+    + In creating this function, there were a few pieces to sort.  First, we knew we wanted the user's experience to be as seamless as possible.  Through our first attempt at this functionality, the user would have had to click on the same element of the saved poster two consecutive times in order for it to be removed from the display.  If the user clicked on the title of the saved poster once, he or she would have to click on the title a second time for it to be deleted.  If the user clicked on the title first and the image after, the poster would remain on the page.  
+
+    + Our problem-solving approach was to modify the function so it could track the last clicked element of the saved poster, which would have the same id index whether the user clicks the image, title, or quote.  As long as the user clicks on any element of the same poster twice (in a timely way), the entire saved poster is removed from the display.  We used the `.split` method on each id to grab and track the index number of each poster's elements.  
+
+    + Furthermore, while refactoring our code, we discovered the `dblclick` event, which would cut back the length of our `clickTwiceThenDelete` function.  In order to do this, we removed our `if/else statement` from the function while keeping some necessary lines of code.  When this function was put to the test, we noticed some bugs in that the user could not click anywhere on each saved poster to delete it, and that the double click feature was not working in a predictable manner.  With the user's experience in mind, we ultimately decided to revert back to our fully functional version of `clickTwiceThenDelete`.
+
+1. Preventing the default display page when showing user's poster:
+    + The user has the ability to create a poster of their choosing and hopes to view the poster where the random poster generates automatically.  This auto-generation occurs because of the `makeRandomPoster` function that is invoked upon load.  During testing, we noticed a slight flash of the user poster on the display page after the `Show My Poster` button was clicked.  What could be blocking this user poster from display?
+
+    + We revisited our `makeUserPoster` function and realized we needed to use the `.preventDefault()` method to avoid showing the user another random poster.  This method acts on the event, then the user's image URL, title, and quote get pushed to the arrays that contain the collection of similar elements for poster generation.  Finally, the `makePoster` function is invoked with the user's input values, and the user's poster is displayed on the main view.  The `.preventDefault()` method allows the rest of our functionality to do its job, uninterrupted.
+
+1. The `hidden` CSS class:
+    + While examining our HTML file, we noticed `.hidden` identified as a class for all of the other sections the user could view and interact with.  Within this class, the `display` property was set to a value of `none`, which meant that unless we hid the default page, the user would never be able to access the `Make Your Own Poster` form or the `Show Saved Posters` grid view.  After doing some research on `toggle`, we decided to create a few functions that toggled `.hidden` from the class list of the target node.  When these functions are called, the two sections in question are toggled, so that while one is hidden, the other is viewable.  This feature allows the user to switch views upon button click. 
