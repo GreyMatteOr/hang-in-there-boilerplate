@@ -72,8 +72,8 @@ While `sectionSavedPosters` is displayed, the user can click two times consecuti
 
 It achieves this through an event listener that responds any time the user clicks on any element in the `saved-posters` section. When a click is detected, the aptly named `clickTwiceThenDelete()` function is called. The event object that gets created when this happens is passed to the function as an argument. Then, the `id` property of `event.target` gets stored. This `id` always follows the following format: the string `'mini'`, `'miniIMG'`, `'miniTTL'`, or `'miniQTE'` (depending on the element it belongs to) followed by a hyphen (`'-'`) and a number string. The number here indicates the index where the corresponding `Poster` object is stored in the `savedPosters[]` array. From here, the code splits into one of two states:
 
- 1. If the poster was not the most-recent node clicked, then store it's `IDNumber` as the `lastClicked` element.
- 2. If the poster's `IDNumber` matches the one stored in `lastClicked`, then splice out the saved 'Poster' that it represents in the `savedPosters[]` array and refresh the display.
+ 1. If the poster was not the most-recent node clicked, then store it's `indexNumber` as the `lastClicked` element.
+ 2. If the poster's `indexNumber` matches the one stored in `lastClicked`, then splice out the saved 'Poster' that it represents in the `savedPosters[]` array and refresh the display.
 
  Using this project's functionality, a user may now curate a beautiful collection of truly inspirational posters!
 
