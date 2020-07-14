@@ -120,24 +120,24 @@ var savedPosters = [];
 var currentPoster;
 var lastClicked;
 
-buttonBackFromUserPoster.addEventListener('click', toggleFormDisplay);
-buttonBackFromSaved.addEventListener('click', goBackFromDisplaySaved);
-buttonShowSaved.addEventListener('click', toggleSaveButton);
-buttonMakeYourOwnPoster.addEventListener('click', toggleFormDisplay);
-buttonShowMyPoster.addEventListener('click', makeUserPoster);
 articleSavedGrid.addEventListener('click', clickTwiceThenDelete);
+buttonBackFromSaved.addEventListener('click', goBackFromDisplaySaved);
+buttonBackFromUserPoster.addEventListener('click', toggleFormDisplay);
+buttonMakeYourOwnPoster.addEventListener('click', toggleFormDisplay);
 buttonSavePoster.addEventListener('click', storeShownPoster);
+buttonShowMyPoster.addEventListener('click', makeUserPoster);
 buttonShowRandom.addEventListener('click', makeRandomPoster);
+buttonShowSaved.addEventListener('click', toggleSaveButton);
 
 ;function clickTwiceThenDelete(event) {
-  var id = event.target.id.split('-');
-  if (lastClicked === id[1]) {
-    savedPosters.splice(id[1], 1);
-    var deleteMe = document.querySelector(`#mini-${id[1]}`);
+  var indexNumber = event.target.id.split('-')[1];
+  if (lastClicked === indexNumber) {
+    savedPosters.splice(indexNumber, 1);
+    var deleteMe = document.querySelector(`#mini-${indexNumber}`);
     articleSavedGrid.removeChild(deleteMe);
     lastClicked = false;
   } else {
-    lastClicked = id[1];
+    lastClicked = indexNumber;
   }
 };
 
