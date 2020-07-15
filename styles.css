@@ -74,6 +74,30 @@ button:hover {
   margin: 10px;
 }
 
+.fade {
+  background-color: inherit;
+  transition-property: background-color opacity;
+  transition-timing-function: ease;
+  transition-duration: 1s;
+}
+
+.success {
+  background-color: #b3ff99;
+  opacity: 1;
+}
+
+.fail {
+  opacity: 1;
+  background-color: #ff3333;
+}
+.dont-fade{
+  transition-duration: 0s;
+}
+
+.not-shown {
+  opacity: 0;
+}
+
 /* ~~~~~ POSTER FORM SECTION ~~~~~ */
 .poster-form {
   display: flex;
